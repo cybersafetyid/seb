@@ -17,20 +17,20 @@
       <img src="https://img.shields.io/github/v/release/cybersafetyid/seb?color=%232563eb&label=Release&style=flat-square" alt="Release" />
     </a>
     <a href="https://github.com/cybersafetyid/seb/blob/master/LICENSE">
-      <img src="https://img.shields.io/github/license/cybersafetyid/seb?color=%2315803d&style=flat-square" alt="License" />
+      <img src="https://img.shields.io/github/license/cybersafetyid/seb?style=flat-square" alt="License" />
     </a>
     <a href="https://github.com/cybersafetyid/seb/issues">
       <img src="https://img.shields.io/github/issues/cybersafetyid/seb?style=flat-square" alt="Issues" />
     </a>
-    <a href="https://github.com/cybersafetyid/seb/actions">
-      <img src="https://img.shields.io/github/actions/workflow/status/cybersafetyid/seb/release.yml?branch=master&style=flat-square" alt="CI Status" />
+    <a href="https://github.com/cybersafetyid/seb/actions/workflows/release.yml">
+      <img src="https://img.shields.io/github/actions/workflow/status/cybersafetyid/seb/release.yml?branch=master&label=CI&style=flat-square" alt="CI" />
     </a>
     <a href="https://cybersafetyid.github.io/seb">
-      <img src="https://img.shields.io/badge/landing-page-%232563eb?style=flat-square" alt="Landing Page" />
+      <img src="https://img.shields.io/badge/landing--page-live-2563eb?style=flat-square" alt="Landing Page" />
     </a>
     <br />
     <a href="https://github.com/sponsors/cybersafetyid">
-      <img src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&color=%23db61a2&style=flat-square" alt="Sponsor" />
+      <img src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&color=%23db61a2&style=flat-square&logo=github" alt="Sponsor" />
     </a>
     <a href="https://github.com/cybersafetyid/seb/graphs/contributors">
       <img src="https://img.shields.io/github/contributors/cybersafetyid/seb?style=flat-square" alt="Contributors" />
