@@ -20,6 +20,7 @@ jobs:
     outputs:
       tag: ${{ steps.tag.outputs.tag }}
       created: ${{ steps.tag.outputs.created }}
+      changelog: ${{ steps.changelog.outputs.changelog }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,7 +37,6 @@ jobs:
             echo "tag=v$PACKAGE_VER" >> "$GITHUB_OUTPUT"
             echo "created=true" >> "$GITHUB_OUTPUT"
           else
-            # Compare semver
             PACKAGE_MAJOR=$(echo "$PACKAGE_VER" | cut -d. -f1)
             PACKAGE_MINOR=$(echo "$PACKAGE_VER" | cut -d. -f2)
             PACKAGE_PATCH=$(echo "$PACKAGE_VER" | cut -d. -f3)
@@ -54,14 +54,45 @@ jobs:
             fi
           fi
 
+      - name: Extract changelog entry
+        id: changelog
+        if: steps.tag.outputs.created == 'true'
+        shell: bash
+        run: |
+          TAG="${{ steps.tag.outputs.tag }}"
+          VERSION="${TAG#v}"
+          # Extract the changelog section for this version
+          awk -v ver="$VERSION" '
+            /^## \['"$VERSION"'\]/ { found=1; next }
+            /^## \[/ && found { exit }
+            found { print }
+          ' CHANGELOG.md > /tmp/release-notes.md
+          # Fallback: if changelog section is empty, use git log
+          if [ ! -s /tmp/release-notes.md ]; then
+            PREV_TAG=$(git tag --sort=-version:refname | head -2 | tail -1)
+            if [ -z "$PREV_TAG" ]; then
+              git log --oneline --format="* %s" > /tmp/release-notes.md
+            else
+              git log --oneline --format="* %s" "$PREV_TAG..$TAG" > /tmp/release-notes.md
+            fi
+          fi
+          echo "changelog<<EOF" >> "$GITHUB_OUTPUT"
+          cat /tmp/release-notes.md >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+
       - name: Create Release
         if: steps.tag.outputs.created == 'true'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
           name: Release ${{ steps.tag.outputs.tag }}
-          generate_release_notes: true
+          body: ${{ steps.changelog.outputs.changelog }}
           make_latest: true
+
+      - name: Sync tag back on version mismatch
+        if: steps.tag.outputs.created == 'false'
+        shell: bash
+        run: echo "No version bump since last tag. Skipping release."
 
   deploy-pages:
     runs-on: ubuntu-latest
