@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="/seb/" />
+  <title>Report Format -- Safe Examine Browser</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <div class="container inner">
+      <a class="logo" href="./">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Safe Examine Browser
+      </a>
+      <div class="links">
+        <a href="guide/quickstart.html">Guide</a>
+        <a href="guide/api.html">API</a>
+        <a href="guide/report.html" class="active">Reports</a>
+        <a href="https://github.com/cybersafetyid/seb">GitHub</a>
+      </div>
+    </div>
+  </nav>
+  <div class="layout">
+    <aside class="sidebar">
+      <nav class="doc-nav">
+        <a href="guide/quickstart.html">Quick Start</a>
+        <a href="guide/features.html">Features</a>
+        <a href="guide/api.html">API Reference</a>
+        <a href="guide/report.html" class="active">Report Format</a>
+        <a href="guide/cli.html">CLI Usage</a>
+        <a href="guide/policies.html">Safety Policies</a>
+        <a href="guide/faq.html">FAQ</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <h1>Report Format</h1>
+      <p>Every examine run produces a <code>MatrixReport</code> containing metadata and one <code>BrowserReport</code> per browser.</p>
+
+      <h2>MatrixReport</h2>
+      <div class="code-block">
+        <pre><code>{
+  "runId": "uuid",
+  "url": "https://example.com",
+  "policy": "strict",
+  "createdAt": "2026-06-17T12:00:00.000Z",
+  "artifactDir": "/path/to/runs/uuid",
+  "reports": [ BrowserReport, ... ]
+}</code></pre>
+      </div>
+
+      <table>
+        <thead>
+          <tr><th>Field</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>runId</td><td>Unique identifier for the run</td></tr>
+          <tr><td>url</td><td>Normalized target URL</td></tr>
+          <tr><td>policy</td><td>Safety policy used</td></tr>
+          <tr><td>createdAt</td><td>ISO 8601 timestamp</td></tr>
+          <tr><td>reports</td><td>Array of per-browser reports</td></tr>
+        </tbody>
+      </table>
+
+      <h2>BrowserReport</h2>
+      <div class="code-block">
+        <pre><code>{
+  "browserId": "chromium",
+  "browserName": "Bundled Chromium",
+  "ok": true,
+  "startedAt": "2026-06-17T12:00:00.000Z",
+  "finishedAt": "2026-06-17T12:00:03.000Z",
+  "initialUrl": "https://example.com",
+  "finalUrl": "https://example.com",
+  "title": "Example Domain",
+  "status": 200,
+  "screenshot": "/api/runs/uuid/artifact/chromium/chromium-desktop.png",
+  "mobileScreenshot": "/api/runs/uuid/artifact/chromium/chromium-mobile.png",
+  "redirects": [],
+  "network": [ NetworkEntry, ... ],
+  "console": [ ConsoleEntry, ... ],
+  "storage": { ... },
+  "warnings": []
+}</code></pre>
+      </div>
+
+      <h3>NetworkEntry</h3>
+      <div class="code-block">
+        <pre><code>{
+  "method": "GET",
+  "url": "https://example.com/style.css",
+  "domain": "example.com",
+  "status": 200,
+  "resourceType": "stylesheet",
+  "size": 1234,
+  "failed": "ERR_CONNECTION_REFUSED"
+}</code></pre>
+      </div>
+      <p><code>status</code> and <code>size</code> are set after the response arrives. <code>failed</code> is set if the request failed.</p>
+
+      <h3>ConsoleEntry</h3>
+      <div class="code-block">
+        <pre><code>{
+  "level": "error",
+  "text": "Failed to load resource",
+  "location": {
+    "url": "https://example.com/script.js",
+    "lineNumber": 42,
+    "columnNumber": 10
+  }
+}</code></pre>
+      </div>
+
+      <h3>StorageSummary</h3>
+      <div class="code-block">
+        <pre><code>{
+  "cookies": [
+    {
+      "name": "session",
+      "domain": ".example.com",
+      "path": "/",
+      "secure": true,
+      "httpOnly": true,
+      "sameSite": "Lax"
+    }
+  ],
+  "localStorageKeys": ["key1", "key2"],
+  "sessionStorageKeys": []
+}</code></pre>
+      </div>
+
+      <h2>File storage</h2>
+      <p>Artifacts are stored on disk in <code>runs/&lt;runId&gt;/</code>:</p>
+      <div class="code-block">
+        <pre><code>runs/&lt;runId&gt;/
+  report.json          # Complete MatrixReport
+  report.html          # Visual HTML summary
+  chromium/
+    report.json        # Per-browser BrowserReport
+    chromium-desktop.png
+    chromium-mobile.png</code></pre>
+      </div>
+    </main>
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <p>Safe Examine Browser -- MIT License</p>
+      <div class="links">
+        <a href="https://github.com/cybersafetyid/seb">GitHub</a>
+        <a href="https://github.com/cybersafetyid/seb/releases">Releases</a>
+        <a href="https://github.com/cybersafetyid/seb/issues">Report an issue</a>
+        <a href="https://github.com/sponsors/cybersafetyid">Sponsor</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

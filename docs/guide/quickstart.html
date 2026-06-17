@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="/seb/" />
+  <title>Quick Start -- Safe Examine Browser</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <div class="container inner">
+      <a class="logo" href="./">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Safe Examine Browser
+      </a>
+      <div class="links">
+        <a href="guide/quickstart.html" class="active">Guide</a>
+        <a href="guide/api.html">API</a>
+        <a href="guide/report.html">Reports</a>
+        <a href="https://github.com/cybersafetyid/seb">GitHub</a>
+      </div>
+    </div>
+  </nav>
+  <div class="layout">
+    <aside class="sidebar">
+      <nav class="doc-nav">
+        <a href="guide/quickstart.html" class="active">Quick Start</a>
+        <a href="guide/features.html">Features</a>
+        <a href="guide/api.html">API Reference</a>
+        <a href="guide/report.html">Report Format</a>
+        <a href="guide/cli.html">CLI Usage</a>
+        <a href="guide/policies.html">Safety Policies</a>
+        <a href="guide/faq.html">FAQ</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <h1>Quick Start</h1>
+
+      <h2>Prerequisites</h2>
+      <ul>
+        <li>Node.js 22 or later</li>
+        <li>npm 10 or later</li>
+      </ul>
+
+      <h2>Installation</h2>
+      <div class="code-block">
+        <pre><code>git clone https://github.com/cybersafetyid/seb.git
+cd seb
+npm install
+npx playwright install chromium</code></pre>
+      </div>
+
+      <p>Optionally install additional browser engines:</p>
+      <div class="code-block">
+        <pre><code>npx playwright install firefox
+npx playwright install webkit</code></pre>
+      </div>
+
+      <h2>Start the application</h2>
+      <div class="code-block">
+        <pre><code>npm run dev</code></pre>
+      </div>
+
+      <p>This starts two processes:</p>
+      <ul>
+        <li><strong>API server</strong> on <code>http://127.0.0.1:4217</code></li>
+        <li><strong>Web UI</strong> on <code>http://localhost:5173</code></li>
+      </ul>
+
+      <h2>Your first examine run</h2>
+      <ol>
+        <li>Open <a href="http://localhost:5173">http://localhost:5173</a></li>
+        <li>Enter a URL (e.g. <code>https://example.com</code>)</li>
+        <li>Select one or more browsers from the matrix</li>
+        <li>Choose a safety policy</li>
+        <li>Click <strong>Run Examine</strong></li>
+      </ol>
+
+      <p>The report appears in the main panel with tabs for Overview, Network, Console, and Storage. Each browser run produces desktop and mobile screenshots.</p>
+
+      <h2>Next steps</h2>
+      <ul>
+        <li><a href="guide/cli.html">CLI usage</a> -- headless examination from terminal</li>
+        <li><a href="guide/api.html">API reference</a> -- programmatic access</li>
+        <li><a href="guide/policies.html">Safety policies</a> -- understanding isolation levels</li>
+        <li><a href="guide/features.html">Features overview</a> -- detailed capability documentation</li>
+      </ul>
+    </main>
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <p>Safe Examine Browser -- MIT License</p>
+      <div class="links">
+        <a href="https://github.com/cybersafetyid/seb">GitHub</a>
+        <a href="https://github.com/cybersafetyid/seb/releases">Releases</a>
+        <a href="https://github.com/cybersafetyid/seb/issues">Report an issue</a>
+        <a href="https://github.com/sponsors/cybersafetyid">Sponsor</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

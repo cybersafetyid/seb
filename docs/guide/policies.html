@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="/seb/" />
+  <title>Safety Policies -- Safe Examine Browser</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <div class="container inner">
+      <a class="logo" href="./">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Safe Examine Browser
+      </a>
+      <div class="links">
+        <a href="guide/quickstart.html">Guide</a>
+        <a href="guide/api.html">API</a>
+        <a href="guide/report.html">Reports</a>
+        <a href="https://github.com/cybersafetyid/seb">GitHub</a>
+      </div>
+    </div>
+  </nav>
+  <div class="layout">
+    <aside class="sidebar">
+      <nav class="doc-nav">
+        <a href="guide/quickstart.html">Quick Start</a>
+        <a href="guide/features.html">Features</a>
+        <a href="guide/api.html">API Reference</a>
+        <a href="guide/report.html">Report Format</a>
+        <a href="guide/cli.html">CLI Usage</a>
+        <a href="guide/policies.html" class="active">Safety Policies</a>
+        <a href="guide/faq.html">FAQ</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <h1>Safety Policies</h1>
+      <p>Safety policies control how restricted the browser session is. All policies use temporary isolated profiles so no data persists between runs.</p>
+
+      <h2>Policy comparison</h2>
+      <table>
+        <thead>
+          <tr><th>Setting</th><th>Strict</th><th>Balanced</th><th>Diagnostic</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Profile</td><td>Temporary</td><td>Temporary</td><td>Temporary</td></tr>
+          <tr><td>Permissions</td><td>All blocked</td><td>Sensitive blocked</td><td>Minimal blocking</td></tr>
+          <tr><td>Downloads</td><td>Disabled</td><td>Quarantined</td><td>Allowed</td></tr>
+          <tr><td>Popups</td><td>Blocked</td><td>Captured</td><td>Allowed</td></tr>
+          <tr><td>JavaScript</td><td>Enabled</td><td>Enabled</td><td>Enabled</td></tr>
+          <tr><td>Third-party cookies</td><td>Blocked</td><td>Default</td><td>Default</td></tr>
+          <tr><td>Use case</td><td>Suspicious links</td><td>General inspection</td><td>QA testing</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Strict</h2>
+      <p>Maximum isolation for investigating untrusted or suspicious URLs. All sensitive permissions are blocked, downloads are disabled entirely, and third-party cookies are restricted. Use this when you want to observe what a page does without giving it any capabilities.</p>
+
+      <h2>Balanced</h2>
+      <p>Sensible defaults for routine URL inspection. Sensitive permissions (camera, microphone, geolocation) are blocked, but downloads are quarantined rather than disabled -- they are saved to the run artifact folder for later inspection. Suitable for most use cases.</p>
+
+      <h2>Diagnostic</h2>
+      <p>Fewer restrictions for compatibility testing and QA work. Downloads are allowed, popups are permitted, and most permissions use browser defaults. Still uses a temporary profile for isolation. Use this when testing page functionality across browsers.</p>
+
+      <h2>Implementation</h2>
+      <p>Policies are applied through Playwright browser context options:</p>
+      <ul>
+        <li><code>permissions: []</code> -- no permissions granted; the browser will prompt or deny</li>
+        <li><code>acceptDownloads</code> -- controlled by policy</li>
+        <li>URL validation -- localhost, private IPs, and HTTP trigger warnings regardless of policy</li>
+      </ul>
+    </main>
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <p>Safe Examine Browser -- MIT License</p>
+      <div class="links">
+        <a href="https://github.com/cybersafetyid/seb">GitHub</a>
+        <a href="https://github.com/cybersafetyid/seb/releases">Releases</a>
+        <a href="https://github.com/cybersafetyid/seb/issues">Report an issue</a>
+        <a href="https://github.com/sponsors/cybersafetyid">Sponsor</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

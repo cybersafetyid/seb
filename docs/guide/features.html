@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="/seb/" />
+  <title>Features -- Safe Examine Browser</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <div class="container inner">
+      <a class="logo" href="./">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Safe Examine Browser
+      </a>
+      <div class="links">
+        <a href="guide/quickstart.html">Guide</a>
+        <a href="guide/api.html">API</a>
+        <a href="guide/report.html">Reports</a>
+        <a href="https://github.com/cybersafetyid/seb">GitHub</a>
+      </div>
+    </div>
+  </nav>
+  <div class="layout">
+    <aside class="sidebar">
+      <nav class="doc-nav">
+        <a href="guide/quickstart.html">Quick Start</a>
+        <a href="guide/features.html" class="active">Features</a>
+        <a href="guide/api.html">API Reference</a>
+        <a href="guide/report.html">Report Format</a>
+        <a href="guide/cli.html">CLI Usage</a>
+        <a href="guide/policies.html">Safety Policies</a>
+        <a href="guide/faq.html">FAQ</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <h1>Features</h1>
+
+      <h2>Cross-browser examination matrix</h2>
+      <p>Run a single URL across any combination of installed browsers in one pass. The browser registry auto-detects Chrome, Edge, Firefox, Brave, Opera, and Vivaldi from standard installation paths. Playwright-bundled Chromium, Firefox, and WebKit are available after running <code>npx playwright install</code>. Any Chromium-based browser can be added via custom executable path.</p>
+
+      <h2>Sandboxed sessions</h2>
+      <p>Every examine run creates a fresh browser context with an empty profile. No cookies, cache, localStorage, or permissions carry over between runs or affect your default browser profile. The context is discarded after the run completes.</p>
+
+      <h2>Safety policy presets</h2>
+      <p>Three isolation levels give you control over how much access the examined page gets. See <a href="guide/policies.html">Safety Policies</a> for the full breakdown.</p>
+
+      <h2>Desktop and mobile screenshots</h2>
+      <p>Each browser captures full-page screenshots at 1440x960 (desktop) and 390x844 (mobile) viewports. Images are served through the API and included in the report.</p>
+
+      <h2>Network activity log</h2>
+      <p>Every HTTP request is recorded with method, URL, domain, HTTP status code, resource type, and content size. Failed requests include the error description. The log is capped at 500 entries per browser.</p>
+
+      <h2>Console log capture</h2>
+      <p>Browser console output is captured per message with level (error, warning, log, info, debug), message text, and source location (URL, line, column). Capped at 500 entries per browser.</p>
+
+      <h2>Storage inspection</h2>
+      <p>After page load, the tool enumerates cookies (name, domain, path, secure flag, httpOnly flag, sameSite), localStorage keys, and sessionStorage keys.</p>
+
+      <h2>Redirect chain mapping</h2>
+      <p>Navigation redirects (HTTP 3xx) are tracked from the initial URL through to the final destination, with status codes at each hop.</p>
+
+      <h2>URL validation and warnings</h2>
+      <p>Before running, the tool validates that the URL uses http or https. It warns about localhost, private network addresses, and unencrypted HTTP.</p>
+
+      <h2>CLI mode</h2>
+      <p>Run headless examinations from the terminal for automation and scripting. See <a href="guide/cli.html">CLI Usage</a>.</p>
+
+      <h2>REST API</h2>
+      <p>The Express API exposes endpoints for health checks, browser listing, examine execution, and artifact serving. See <a href="guide/api.html">API Reference</a>.</p>
+
+      <h2>Structured export</h2>
+      <p>Every run produces a complete JSON report with all telemetry, plus an HTML summary page for quick visual review. Artifacts are stored in <code>runs/&lt;run-id&gt;/</code>.</p>
+    </main>
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <p>Safe Examine Browser -- MIT License</p>
+      <div class="links">
+        <a href="https://github.com/cybersafetyid/seb">GitHub</a>
+        <a href="https://github.com/cybersafetyid/seb/releases">Releases</a>
+        <a href="https://github.com/cybersafetyid/seb/issues">Report an issue</a>
+        <a href="https://github.com/sponsors/cybersafetyid">Sponsor</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

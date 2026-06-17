@@ -5,6 +5,34 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-06-17
+
+### Added
+
+- Comprehensive documentation site under `docs/guide/` with seven pages:
+  - Quick Start guide with installation steps and first-run walkthrough
+  - Features reference covering all capabilities
+  - API Reference documenting all REST endpoints with examples
+  - Report Format specification with full data structure details
+  - CLI Usage guide with examples and argument reference
+  - Safety Policies comparison and detailed descriptions
+  - FAQ answering common questions
+- Shared CSS stylesheet for consistent documentation presentation
+- Custom 404 page for GitHub Pages with navigation links
+- `<base href="/seb/" />` tag on all pages for correct asset path resolution
+- Navigation links from landing page to documentation guide and API reference
+
+### Changed
+
+- Landing page navigation updated with links to Quick Start, Guide, and API docs
+- Landing page hero buttons updated: replaced "Documentation" with "Quick Start"
+
+### Infrastructure
+
+- Release workflow extended to support branch trigger for both main and master
+- Changelog entries now automatically populate GitHub release body
+- Repo description, homepage URL, and 9 repository topics configured
+
 ## [1.0.0] - 2026-06-17
 
 ### Added
@@ -26,8 +54,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Responsive layout**: Two-column workbench on desktop collapses to single column on mobile.
 - **API server**: Express-based REST API on port 4217 with health check, browser listing, examine execution, and artifact serving.
 - **GitHub Pages landing page**: Project overview and documentation site deployed via CI/CD.
-- **Automated release workflow**: GitHub Actions pipeline that creates releases from version bumps and deploys GitHub Pages on push to main.
+- **Automated release workflow**: GitHub Actions pipeline that creates releases from version bumps and deploys GitHub Pages on push.
 - **Sponsorship configuration**: GitHub Sponsors link for project support.
+- **README badges**: Release, license, CI status, contributors, stars, and sponsor badges.
+- **Community files**: CONTRIBUTING.md, CODE_OF_CONDUCT.md, SECURITY.md, PULL_REQUEST_TEMPLATE.md.
 
 ### Technical
 

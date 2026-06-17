@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="/seb/" />
+  <title>Page not found -- Safe Examine Browser</title>
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --text: #151a22;
+      --text-muted: #697386;
+      --primary: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+    .wrap { max-width: 480px; padding: 40px; }
+    h1 { font-size: 64px; margin: 0; color: var(--text-muted); }
+    p { color: var(--text-muted); margin: 8px 0 24px; }
+    a { color: var(--primary); text-decoration: none; font-weight: 600; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>404</h1>
+    <p>Page not found in the documentation.</p>
+    <a href="./">Back to home</a> &middot;
+    <a href="guide/quickstart.html">Quick start guide</a>
+  </div>
+</body>
+</html>

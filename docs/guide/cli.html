@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="/seb/" />
+  <title>CLI Usage -- Safe Examine Browser</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <div class="container inner">
+      <a class="logo" href="./">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Safe Examine Browser
+      </a>
+      <div class="links">
+        <a href="guide/quickstart.html">Guide</a>
+        <a href="guide/api.html">API</a>
+        <a href="guide/report.html">Reports</a>
+        <a href="https://github.com/cybersafetyid/seb">GitHub</a>
+      </div>
+    </div>
+  </nav>
+  <div class="layout">
+    <aside class="sidebar">
+      <nav class="doc-nav">
+        <a href="guide/quickstart.html">Quick Start</a>
+        <a href="guide/features.html">Features</a>
+        <a href="guide/api.html">API Reference</a>
+        <a href="guide/report.html">Report Format</a>
+        <a href="guide/cli.html" class="active">CLI Usage</a>
+        <a href="guide/policies.html">Safety Policies</a>
+        <a href="guide/faq.html">FAQ</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <h1>CLI Usage</h1>
+      <p>The CLI mode lets you run examinations from the terminal without the web UI. Useful for automation, scripting, and CI pipelines.</p>
+
+      <h2>Basic usage</h2>
+      <div class="code-block">
+        <pre><code>npm run examine -- &lt;url&gt; [browser] [policy]</code></pre>
+      </div>
+
+      <h3>Examples</h3>
+      <div class="code-block">
+        <pre><code># Examine with Chromium (default)
+npm run examine -- https://example.com
+
+# Examine with Firefox on balanced policy
+npm run examine -- https://example.com firefox balanced
+
+# Examine with Chromium in diagnostic mode
+npm run examine -- https://example.com chromium diagnostic
+
+# Pipe output to a file
+npm run examine -- https://example.com &gt; report.json</code></pre>
+      </div>
+
+      <h2>Arguments</h2>
+      <table>
+        <thead>
+          <tr><th>Position</th><th>Name</th><th>Default</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>url</td><td>required</td><td>Target URL (http or https)</td></tr>
+          <tr><td>2</td><td>browser</td><td>chromium</td><td>Browser ID</td></tr>
+          <tr><td>3</td><td>policy</td><td>strict</td><td>Safety preset (strict, balanced, diagnostic)</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Browser IDs</h2>
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Browser</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>chromium</td><td>Playwright-bundled Chromium</td></tr>
+          <tr><td>chrome</td><td>Google Chrome</td></tr>
+          <tr><td>edge</td><td>Microsoft Edge</td></tr>
+          <tr><td>firefox</td><td>Playwright-bundled Firefox</td></tr>
+          <tr><td>webkit</td><td>Playwright-bundled WebKit</td></tr>
+          <tr><td>brave</td><td>Brave Browser</td></tr>
+          <tr><td>opera</td><td>Opera</td></tr>
+          <tr><td>vivaldi</td><td>Vivaldi</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Output</h2>
+      <p>The CLI prints the complete <code>MatrixReport</code> as JSON to stdout. Artifacts are written to <code>runs/&lt;run-id&gt;/</code> as usual.</p>
+
+      <h2>Exit codes</h2>
+      <table>
+        <thead>
+          <tr><th>Code</th><th>Meaning</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>0</td><td>Run completed (may include browser failures)</td></tr>
+          <tr><td>1</td><td>Usage error (missing URL)</td></tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <p>Safe Examine Browser -- MIT License</p>
+      <div class="links">
+        <a href="https://github.com/cybersafetyid/seb">GitHub</a>
+        <a href="https://github.com/cybersafetyid/seb/releases">Releases</a>
+        <a href="https://github.com/cybersafetyid/seb/issues">Report an issue</a>
+        <a href="https://github.com/sponsors/cybersafetyid">Sponsor</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

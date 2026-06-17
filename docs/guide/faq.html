@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="/seb/" />
+  <title>FAQ -- Safe Examine Browser</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <div class="container inner">
+      <a class="logo" href="./">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Safe Examine Browser
+      </a>
+      <div class="links">
+        <a href="guide/quickstart.html">Guide</a>
+        <a href="guide/api.html">API</a>
+        <a href="guide/report.html">Reports</a>
+        <a href="https://github.com/cybersafetyid/seb">GitHub</a>
+      </div>
+    </div>
+  </nav>
+  <div class="layout">
+    <aside class="sidebar">
+      <nav class="doc-nav">
+        <a href="guide/quickstart.html">Quick Start</a>
+        <a href="guide/features.html">Features</a>
+        <a href="guide/api.html">API Reference</a>
+        <a href="guide/report.html">Report Format</a>
+        <a href="guide/cli.html">CLI Usage</a>
+        <a href="guide/policies.html">Safety Policies</a>
+        <a href="guide/faq.html" class="active">FAQ</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <h1>FAQ</h1>
+
+      <h3>What browsers can I use?</h3>
+      <p>Playwright-bundled Chromium, Firefox, and WebKit, plus auto-detected Chrome, Edge, Brave, Opera, and Vivaldi. Any Chromium-based browser can be added via custom executable path. Safari is only available through the WebKit approximation on macOS.</p>
+
+      <h3>Is my personal browsing data exposed to the examined page?</h3>
+      <p>No. Every examine run creates a fresh browser context with an empty profile. No cookies, cache, localStorage, or credentials from your default browser are accessible.</p>
+
+      <h3>Can this tool bypass login pages or CAPTCHAs?</h3>
+      <p>No. This is an observation tool. It opens URLs in isolated sessions and records what happens. It does not interact with forms, bypass authentication, or solve challenges.</p>
+
+      <h3>How do I add a browser that is not auto-detected?</h3>
+      <p>Use the Custom Chromium Path field in the UI, or pass the executable path to the API. Any Chromium-based browser that supports Playwright automation flags should work.</p>
+
+      <h3>Where are reports stored?</h3>
+      <p>In the <code>runs/</code> directory at the project root, organized by run ID. Each run contains a JSON report, an HTML summary, and per-browser screenshots.</p>
+
+      <h3>Can I run this on Linux or macOS?</h3>
+      <p>Yes. The browser detection paths in <code>browserRegistry.ts</code> are Windows-focused currently, but the core Playwright engine runs on Linux and macOS. Contributions for platform-specific paths are welcome.</p>
+
+      <h3>How do I update the Playwright browsers?</h3>
+      <p>Run <code>npx playwright install --with-deps</code> to install or update browser binaries to match your Playwright version.</p>
+
+      <h3>What is the difference between Chromium and Chrome?</h3>
+      <p>Chromium is the open-source browser bundled with Playwright. Chrome is the Google-branded browser installed on your system. Both use the same engine, but Chrome includes proprietary components like Widevine DRM and Pepper Flash.</p>
+
+      <h3>Can I examine multiple URLs at once?</h3>
+      <p>Not in the current version. Each examine run processes one URL. Future versions may support batch processing.</p>
+
+      <h3>Does the tool modify the target website?</h3>
+      <p>No. It opens the URL and observes. It does not submit forms, click buttons, or execute destructive actions. The tool captures what a normal browser would see when visiting the page.</p>
+    </main>
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <p>Safe Examine Browser -- MIT License</p>
+      <div class="links">
+        <a href="https://github.com/cybersafetyid/seb">GitHub</a>
+        <a href="https://github.com/cybersafetyid/seb/releases">Releases</a>
+        <a href="https://github.com/cybersafetyid/seb/issues">Report an issue</a>
+        <a href="https://github.com/sponsors/cybersafetyid">Sponsor</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
