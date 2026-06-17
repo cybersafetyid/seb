@@ -22,7 +22,7 @@ body {
 }
 .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-nav {
+header {
   height: 64px;
   display: flex;
   align-items: center;
@@ -32,25 +32,25 @@ nav {
   top: 0;
   z-index: 10;
 }
-nav .inner {
+header .inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 }
-nav .logo {
+header .logo {
   font-weight: 700; font-size: 16px;
   display: flex; align-items: center; gap: 8px;
   text-decoration: none; color: var(--text);
 }
-nav .logo svg { color: var(--primary); }
-nav .links { display: flex; gap: 20px; align-items: center; }
-nav .links a {
+header .logo svg { color: var(--primary); }
+header .links { display: flex; gap: 20px; align-items: center; }
+header .links a {
   color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500;
   transition: color 0.15s;
 }
-nav .links a:hover,
-nav .links a.active { color: var(--primary); }
+header .links a:hover,
+header .links a.active { color: var(--primary); }
 
 .layout {
   display: grid;
@@ -62,16 +62,15 @@ nav .links a.active { color: var(--primary); }
   border-right: 1px solid var(--border);
   background: var(--surface);
 }
-.doc-nav { display: flex; flex-direction: column; gap: 4px; position: sticky; top: 80px; }
+.doc-nav { display: flex; flex-direction: column; gap: 2px; position: sticky; top: 80px; }
 .doc-nav a {
   display: block;
-  padding: 8px 24px;
-  border-radius: 0;
+  padding: 10px 24px 10px 22px;
   color: var(--text-muted);
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
-  border-right: 2px solid transparent;
+  border-left: 2px solid transparent;
   transition: all 0.12s;
 }
 .doc-nav a:hover { color: var(--text); background: var(--bg); }
@@ -79,7 +78,7 @@ nav .links a.active { color: var(--primary); }
   color: var(--primary);
   background: #eff6ff;
   font-weight: 600;
-  border-right-color: var(--primary);
+  border-left-color: var(--primary);
 }
 
 .content {
