@@ -20,7 +20,7 @@ body {
   line-height: 1.6;
   font-size: 15px;
 }
-.container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
 nav {
   height: 64px;
@@ -49,29 +49,29 @@ nav .links a {
   color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500;
   transition: color 0.15s;
 }
-nav .links a:hover, nav .links a.active { color: var(--primary); }
+nav .links a:hover,
+nav .links a.active { color: var(--primary); }
 
 .layout {
   display: grid;
   grid-template-columns: 220px 1fr;
-  max-width: 1200px;
-  margin: 0 auto;
   min-height: calc(100vh - 128px);
 }
 .sidebar {
-  padding: 32px 16px 32px 24px;
+  padding: 32px 0 32px 0;
   border-right: 1px solid var(--border);
   background: var(--surface);
 }
 .doc-nav { display: flex; flex-direction: column; gap: 4px; position: sticky; top: 80px; }
 .doc-nav a {
   display: block;
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: 8px 24px;
+  border-radius: 0;
   color: var(--text-muted);
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
+  border-right: 2px solid transparent;
   transition: all 0.12s;
 }
 .doc-nav a:hover { color: var(--text); background: var(--bg); }
@@ -79,6 +79,7 @@ nav .links a:hover, nav .links a.active { color: var(--primary); }
   color: var(--primary);
   background: #eff6ff;
   font-weight: 600;
+  border-right-color: var(--primary);
 }
 
 .content {
@@ -94,6 +95,7 @@ nav .links a:hover, nav .links a.active { color: var(--primary); }
 .content li { margin-bottom: 4px; }
 .content a { color: var(--primary); text-decoration: none; }
 .content a:hover { text-decoration: underline; }
+.content img { max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border); }
 
 .code-block {
   background: var(--code-bg);

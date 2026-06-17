@@ -5,59 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <base href="/seb/" />
   <title>Safe Examine Browser</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
-    :root {
-      --bg: #f7f8fa;
-      --surface: #ffffff;
-      --border: #d7dde5;
-      --text: #151a22;
-      --text-muted: #697386;
-      --primary: #2563eb;
-      --primary-hover: #1d4ed8;
-      --success: #15803d;
-      --danger: #b91c1c;
-      --warning: #b45309;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Inter, "Segoe UI", system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-    }
-    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
-
-    nav {
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    nav .inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-    }
-    nav .logo {
-      font-weight: 700; font-size: 16px;
-      display: flex; align-items: center; gap: 8px;
-      text-decoration: none; color: var(--text);
-    }
-    nav .logo svg { color: var(--primary); }
-    nav .links { display: flex; gap: 20px; align-items: center; }
-    nav .links a {
-      color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500;
-      transition: color 0.15s;
-    }
-    nav .links a:hover { color: var(--primary); }
-
     .hero {
       padding: 80px 0 60px;
       text-align: center;
@@ -74,9 +23,7 @@
       transition: all 0.15s;
     }
     .btn:hover { border-color: var(--primary); }
-    .btn.primary {
-      background: var(--primary); border-color: var(--primary); color: #fff;
-    }
+    .btn.primary { background: var(--primary); border-color: var(--primary); color: #fff; }
     .btn.primary:hover { background: var(--primary-hover); }
 
     .feature-grid {
@@ -95,9 +42,7 @@
     .feature-card h3 { margin: 14px 0 6px; font-size: 16px; }
     .feature-card p { margin: 0; color: var(--text-muted); font-size: 13px; line-height: 1.6; }
 
-    .section-title {
-      font-size: 24px; margin: 0 0 24px; text-align: center;
-    }
+    .section-title { font-size: 24px; margin: 0 0 24px; text-align: center; }
 
     .screenshots {
       display: grid;
@@ -112,11 +57,7 @@
       border-radius: 10px;
       overflow: hidden;
     }
-    .screenshots figure img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
+    .screenshots figure img { display: block; width: 100%; height: auto; }
     .screenshots figcaption {
       padding: 10px 14px;
       background: var(--surface);
@@ -124,9 +65,7 @@
       color: var(--text-muted);
       font-size: 12px;
     }
-    .screenshots .full {
-      grid-column: 1 / -1;
-    }
+    .screenshots .full { grid-column: 1 / -1; }
 
     .stats {
       display: grid;
@@ -144,17 +83,6 @@
     .stat strong { display: block; font-size: 28px; color: var(--primary); }
     .stat span { display: block; font-size: 13px; color: var(--text-muted); margin-top: 4px; }
 
-    .footer {
-      border-top: 1px solid var(--border);
-      padding: 40px 0;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 13px;
-    }
-    .footer a { color: var(--primary); text-decoration: none; }
-    .footer a:hover { text-decoration: underline; }
-    .footer .links { display: flex; gap: 16px; justify-content: center; margin-top: 12px; }
-
     @media (max-width: 700px) {
       .feature-grid { grid-template-columns: 1fr; }
       .stats { grid-template-columns: repeat(2, 1fr); }
@@ -165,7 +93,7 @@
 </head>
 <body>
   <nav>
-    <div class="container inner">
+    <div class="wrap inner">
       <a class="logo" href="/seb/">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         Safe Examine Browser
@@ -180,7 +108,7 @@
     </div>
   </nav>
 
-  <main class="container">
+  <main class="wrap">
     <section class="hero">
       <h1>Inspect URLs safely across all your browsers</h1>
       <p>
@@ -276,7 +204,7 @@
   </main>
 
   <footer class="footer">
-    <div class="container">
+    <div class="wrap">
       <p>Safe Examine Browser -- MIT License</p>
       <div class="links">
         <a href="https://github.com/cybersafetyid/seb">GitHub</a>
