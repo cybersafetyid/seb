@@ -5,6 +5,20 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2026-06-17
+
+### Fixed
+
+- Sidebar `<nav>` styling conflict with top navigation. Changed top nav to `<header>` element so sidebar nav links no longer inherit 64px height and border-bottom.
+- Active nav indicator changed from `border-right` (clashing with sidebar divider) to `border-left` with proper spacing.
+- Page width inconsistency between landing page (960px) and documentation pages (1200px). Unified to single 1200px `wrap` class across all pages.
+- Landing page now uses shared `style.css` instead of duplicating styles inline.
+
+### Added
+
+- GitHub Pages 404 fallback page with navigation links.
+- All guide pages now use absolute `/seb/` paths for link consistency.
+
 ## [1.1.0] - 2026-06-17
 
 ### Added
