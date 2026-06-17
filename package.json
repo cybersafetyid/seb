@@ -1,0 +1,49 @@
+{
+  "name": "seb",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "server/index.ts",
+  "scripts": {
+    "dev": "concurrently \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:client": "vite --host 0.0.0.0",
+    "dev:server": "tsx watch server/index.ts",
+    "build": "tsc && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "examine": "tsx server/cli.ts",
+    "check": "tsc --noEmit"
+  },
+  "keywords": ["security", "browser", "inspection", "playwright", "url-analyzer"],
+  "author": "cybersafetyid",
+  "license": "MIT",
+  "description": "Isolated multi-browser URL inspection toolkit for security analysts, QA engineers, and developers.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cybersafetyid/seb.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cybersafetyid/seb/issues"
+  },
+  "homepage": "https://cybersafetyid.github.io/seb",
+  "dependencies": {
+    "@vitejs/plugin-react": "^6.0.2",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "lucide-react": "^1.20.0",
+    "playwright": "^1.61.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "typescript": "^6.0.3",
+    "uuid": "^14.0.0",
+    "vite": "^8.0.16"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.9.3",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@types/uuid": "^11.0.0",
+    "concurrently": "^10.0.3",
+    "tsx": "^4.22.4"
+  }
+}

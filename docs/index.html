@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safe Examine Browser</title>
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --surface: #ffffff;
+      --border: #d7dde5;
+      --text: #151a22;
+      --text-muted: #697386;
+      --primary: #2563eb;
+      --success: #15803d;
+      --danger: #b91c1c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+    nav {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    nav .logo { font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+    nav .logo svg { color: var(--primary); }
+    nav .links { display: flex; gap: 16px; align-items: center; }
+    nav .links a { color: var(--text); text-decoration: none; font-size: 14px; font-weight: 500; }
+    nav .links a:hover { color: var(--primary); }
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+    .hero h1 { font-size: 36px; margin: 0 0 12px; letter-spacing: -0.02em; }
+    .hero p { color: var(--text-muted); font-size: 18px; max-width: 640px; margin: 0 auto 32px; }
+    .hero .buttons { display: flex; gap: 12px; justify-content: center; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      height: 44px; padding: 0 24px; border-radius: 8px;
+      font-weight: 600; font-size: 15px; text-decoration: none;
+      border: 1px solid var(--border); background: var(--surface); color: var(--text);
+    }
+    .btn.primary { background: var(--primary); border-color: var(--primary); color: #fff; }
+    .btn.ghost { border-color: transparent; background: transparent; color: var(--primary); }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding: 60px 0;
+    }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+    }
+    .feature-card svg { color: var(--primary); }
+    .feature-card h3 { margin: 12px 0 6px; font-size: 16px; }
+    .feature-card p { margin: 0; color: var(--text-muted); font-size: 13px; }
+
+    .screenshot-section { padding: 40px 0; }
+    .screenshot-section h2 { font-size: 24px; margin: 0 0 24px; }
+    .screenshot-section img {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    .footer a { color: var(--primary); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 700px) {
+      .feature-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;width:100%">
+      <div class="logo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Safe Examine Browser
+      </div>
+      <div class="links">
+        <a href="https://github.com/cybersafetyid/seb">GitHub</a>
+        <a href="https://github.com/cybersafetyid/seb/issues">Issues</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Inspect URLs safely across all your browsers</h1>
+      <p>Sandboxed multi-browser URL inspection tool. Open any URL in isolated sessions, capture screenshots, network activity, console logs, and storage metadata. Evidence without exposure.</p>
+      <div class="buttons">
+        <a class="btn primary" href="https://github.com/cybersafetyid/seb">View on GitHub</a>
+        <a class="btn" href="https://github.com/cybersafetyid/seb/blob/main/README.md">Documentation</a>
+      </div>
+    </section>
+
+    <section class="feature-grid">
+      <div class="feature-card">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <h3>Cross-browser matrix</h3>
+        <p>Run one URL across Chrome, Firefox, Edge, Brave, Opera, Vivaldi, WebKit, or any Chromium-based browser in a single pass.</p>
+      </div>
+      <div class="feature-card">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <h3>Sandboxed by default</h3>
+        <p>Temporary profiles, blocked permissions, quarantined downloads. Three safety presets from strict isolation to diagnostic mode.</p>
+      </div>
+      <div class="feature-card">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <h3>Full evidence capture</h3>
+        <p>Screenshots (desktop + mobile), network request log, console output, cookies, storage keys, and redirect chains in a structured report.</p>
+      </div>
+    </section>
+
+    <section class="screenshot-section">
+      <h2>Workbench</h2>
+      <img src="screenshot-app.png" alt="Safe Examine Browser screenshot showing the workbench interface with URL input, browser matrix, and report area" />
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Safe Examine Browser - MIT License</p>
+      <p>
+        <a href="https://github.com/cybersafetyid/seb">GitHub</a> &middot;
+        <a href="https://github.com/cybersafetyid/seb/issues">Report an issue</a> &middot;
+        <a href="https://github.com/sponsors/cybersafetyid">Sponsor</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

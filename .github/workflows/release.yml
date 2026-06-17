@@ -1,0 +1,86 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
+      created: ${{ steps.tag.outputs.created }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check version bump and create tag
+        id: tag
+        shell: bash
+        run: |
+          LATEST=$(git tag --sort=-version:refname | head -1)
+          PACKAGE_VER=$(node -p "require('./package.json').version")
+          if [ -z "$LATEST" ]; then
+            echo "tag=v$PACKAGE_VER" >> "$GITHUB_OUTPUT"
+            echo "created=true" >> "$GITHUB_OUTPUT"
+          else
+            # Compare semver
+            PACKAGE_MAJOR=$(echo "$PACKAGE_VER" | cut -d. -f1)
+            PACKAGE_MINOR=$(echo "$PACKAGE_VER" | cut -d. -f2)
+            PACKAGE_PATCH=$(echo "$PACKAGE_VER" | cut -d. -f3)
+            LATEST_CLEAN=${LATEST#v}
+            LATEST_MAJOR=$(echo "$LATEST_CLEAN" | cut -d. -f1)
+            LATEST_MINOR=$(echo "$LATEST_CLEAN" | cut -d. -f2)
+            LATEST_PATCH=$(echo "$LATEST_CLEAN" | cut -d. -f3)
+            if [ "$PACKAGE_MAJOR" -gt "$LATEST_MAJOR" ] ||
+               [ "$PACKAGE_MAJOR" -eq "$LATEST_MAJOR" -a "$PACKAGE_MINOR" -gt "$LATEST_MINOR" ] ||
+               [ "$PACKAGE_MAJOR" -eq "$LATEST_MAJOR" -a "$PACKAGE_MINOR" -eq "$LATEST_MINOR" -a "$PACKAGE_PATCH" -gt "$LATEST_PATCH" ]; then
+              echo "tag=v$PACKAGE_VER" >> "$GITHUB_OUTPUT"
+              echo "created=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "created=false" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+
+      - name: Create Release
+        if: steps.tag.outputs.created == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          name: Release ${{ steps.tag.outputs.tag }}
+          generate_release_notes: true
+          make_latest: true
+
+  deploy-pages:
+    runs-on: ubuntu-latest
+    needs: release
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
